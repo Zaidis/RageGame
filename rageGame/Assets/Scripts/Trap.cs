@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrapBox : MonoBehaviour
+public class Trap : MonoBehaviour
 {
 
-    private void OnCollisionEnter2D(Collision2D collision) {
+    public virtual void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Player")) {
             GameManager.instance.KillPlayer();
         }
