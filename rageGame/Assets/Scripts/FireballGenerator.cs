@@ -8,10 +8,10 @@ public class FireballGenerator : MonoBehaviour
     [SerializeField] private Fireball ball;
 
     [SerializeField] private float spawnTimerMax;
-    private float spawnTimer;
+    private float spawnTimer = 0;
 
     private void Start() {
-        spawnTimer = spawnTimerMax;
+        //spawnTimer = spawnTimerMax;
     }
 
     private void Update() {
