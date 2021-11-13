@@ -13,11 +13,6 @@ public class playerMovement : MonoBehaviour
     public bool canMove = true;
     public Vector2 movement;
 
-    
-    
-    
-    
-
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -35,9 +30,7 @@ public class playerMovement : MonoBehaviour
             movement = movement.normalized;
             rb.velocity = new Vector2(movement.x * speed, rb.velocity.y);
 
-        }
-
-        
+        } 
 
     }
 
