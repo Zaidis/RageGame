@@ -13,6 +13,7 @@ public class GhostTile : Trap
     float damage;
     float spinspd;
     bool inRange;
+    bool inFlight;
     Vector2 moveVector;
     Vector2 attack_target;
     [SerializeField] public GameObject sprite;
@@ -20,7 +21,7 @@ public class GhostTile : Trap
 
     public Vector2 spawn_pos;
     public Quaternion spawn_rot;
-    private void Awake()
+    private void Start()
     {
         spawn_pos = transform.position;
         spawn_rot = transform.rotation;
@@ -32,15 +33,18 @@ public class GhostTile : Trap
 
     void OnTriggerEnter2D(Collider2D c)
     {
-        //Debug.Log("Collider2D entered range");
-        if (c.tag == "Player")
+        if (inFlight != true)
         {
-            targeter.transform.position = c.transform.position;
-            //attack_target = c.transform.position;
-            //moveVector = c.transform.position - transform.position;
-            inRange = true;
-            //Debug.Log("BANZAI!!!");
-            Invoke("SavePerformance", 4);
+            //Debug.Log("Collider2D entered range");
+            if (c.tag == "Player")
+            {
+                targeter.transform.position = c.transform.position;
+                //attack_target = c.transform.position;
+                //moveVector = c.transform.position - transform.position;
+                inRange = true;
+                //Debug.Log("BANZAI!!!");
+                //Invoke("SavePerformance", 4);
+            }
         }
     }
 
@@ -55,16 +59,18 @@ public class GhostTile : Trap
     }
     public override void ResetTrap()
     {
-        //i fixed this nathan :)
-        gameObject.SetActive(true);
+        // i fixed this nathan :)
+
         transform.SetPositionAndRotation(spawn_pos, spawn_rot);
+        inFlight = false;
+        inRange = false;
+        gameObject.SetActive(true);
     }
 
     void SavePerformance()
     {
         inRange = false;
         gameObject.SetActive(false);
-        
     }
 
     void AttackRoutine()
@@ -76,11 +82,12 @@ public class GhostTile : Trap
             delay_timer -= Time.deltaTime;
         } else
         {
+            inFlight = true;
             transform.position = Vector2.Lerp(transform.position, targeter.transform.position, Time.deltaTime * spd_mult);
         }
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (inRange == true) AttackRoutine();
     }
