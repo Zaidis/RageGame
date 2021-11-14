@@ -56,4 +56,11 @@ public class playerMovement : MonoBehaviour
         anim.SetBool("isMoving", true);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.collider.gameObject.CompareTag("Win")) {
+            GameManager.instance.WinLevel(GameManager.instance.globalTimer);
+            print("You win!!!");
+        }
+    }
+
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
 public class levelSelect : MonoBehaviour
 {
     public int selectedLevel; //2, 3, 4, 5
@@ -19,7 +20,9 @@ public class levelSelect : MonoBehaviour
         enterButton.SetActive(true);
         highScore.gameObject.SetActive(true);
         levelName.gameObject.SetActive(true);
-        highScore.text = "Highscore: " + highScores.instance.GrabScore(num).ToString();
+
+        TimeSpan time = TimeSpan.FromSeconds(highScores.instance.GrabScore(num));
+        highScore.text = "Highscore: " + time.ToString(@"hh\:mm\:ss\:ff");
         levelName.text = "Selected Level: " + (num - 1).ToString();
     }
 

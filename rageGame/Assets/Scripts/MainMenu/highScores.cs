@@ -17,38 +17,40 @@ public class highScores : MonoBehaviour
         }
 
         DontDestroyOnLoad(this.gameObject);
+        //ResetScores();
         UpdateScores();
     }
     
     public void UpdateScores() {
-        score_1 = PlayerPrefs.GetFloat("Score 1");
-        score_2 = PlayerPrefs.GetFloat("Score 2");
-        score_3 = PlayerPrefs.GetFloat("Score 3");
-        score_4 = PlayerPrefs.GetFloat("Score 4");
+        score_1 = PlayerPrefs.GetFloat("Score1");
+        score_2 = PlayerPrefs.GetFloat("Score2");
+        score_3 = PlayerPrefs.GetFloat("Score3");
+        score_4 = PlayerPrefs.GetFloat("Score4");
     }
 
     public void ResetScores() {
-        PlayerPrefs.SetFloat("Score 1", 0);
-        PlayerPrefs.SetFloat("Score 2", 0);
-        PlayerPrefs.SetFloat("Score 3", 0);
-        PlayerPrefs.SetFloat("Score 4", 0);
+        PlayerPrefs.SetFloat("Score1", 0);
+        PlayerPrefs.SetFloat("Score2", 0);
+        PlayerPrefs.SetFloat("Score3", 0);
+        PlayerPrefs.SetFloat("Score4", 0);
     }
 
     public void UpdateOneScore(int num, float score) {
         switch (num) {
             case 1: 
-                PlayerPrefs.SetFloat("Score 1", score);
+                PlayerPrefs.SetFloat("Score1", score);
                 break;
             case 2:
-                PlayerPrefs.SetFloat("Score 2", score);
+                PlayerPrefs.SetFloat("Score2", score);
                 break;
             case 3:
-                PlayerPrefs.SetFloat("Score 3", score);
+                PlayerPrefs.SetFloat("Score3", score);
                 break;
             case 4:
-                PlayerPrefs.SetFloat("Score 4", score);
+                PlayerPrefs.SetFloat("Score4", score);
                 break;
         }
+        PlayerPrefs.Save();
     }
     public float GrabScore(int num) {
         switch (num) {
