@@ -14,7 +14,19 @@ public class GameManager : MonoBehaviour
     public float globalTimer;
 
     public Transform spawnPoint;
+
+    [SerializeField] Trap[] tiletraps;
+    Transform[] tiletrap_spawns;
+
     private void Awake() {
+
+        tiletrap_spawns = new Transform[tiletraps.Length];
+
+        for (int i = 0; i < tiletraps.Length; i++)
+        {
+            tiletrap_spawns[i] = tiletraps[i].GetComponent<Transform>(); 
+        }
+
         if(instance == null) {
             instance = this;
         } else {
@@ -47,8 +59,20 @@ public class GameManager : MonoBehaviour
 
     public void RespawnPlayer() {
         player.transform.position = spawnPoint.position;
+        ResetTraps();
     }
 
-    
+    void ResetTraps()
+    {
+        // for each trap, reset position and rotation, also turn off the in range bool
+        for (int i = 0; i < tiletraps.Length; i++)
+        {
+            // first lets turn off the trap an re-arm it
+            tiletraps[i].ResetTrap();
+            // now move it back to where it was when the scene loaded. BUT since only the sprite and its collider are moving, move those.
+            //tiletrap_spawns[i].SetPositionAndRotation(tiletraps[i].spawn.position, tiletraps[i].spawn.rotation);
+        }
+
+    }
 
 }

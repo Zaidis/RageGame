@@ -5,10 +5,21 @@ using UnityEngine;
 public class Trap : MonoBehaviour
 {
 
+    public Transform spawn;
+    // basic trap, kills on contact
+
+    private void OnEnable()
+    {
+        spawn = transform;
+    }
+    public virtual void ResetTrap()
+    {
+
+    }
+
     public virtual void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Player")) {
             GameManager.instance.KillPlayer();
         }
     }
-
 }
