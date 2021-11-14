@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ae8a3e9d4cbebc448c322996aac8808, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawn: {fileID: 0}
 --- !u!1 &1808530915734657423
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,7 +172,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 8
+  m_Radius: 6
 --- !u!114 &1808530915734657409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,10 +185,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e760a6faae4671b4ebd9ac104c3a5038, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawn: {fileID: 0}
   att_delay: 1
   spd_mult: 2
   sprite: {fileID: 1808530915637535822}
   targeter: {fileID: 1808530916502580140}
+  spawn_pos: {x: 0, y: 0}
+  spawn_rot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1808530916502580140
 GameObject:
   m_ObjectHideFlags: 0
