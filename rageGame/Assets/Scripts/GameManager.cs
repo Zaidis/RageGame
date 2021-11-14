@@ -20,10 +20,12 @@ public class GameManager : MonoBehaviour
     Transform[] tiletrap_spawns;
 
     [SerializeField] private GameObject deathScreen;
-    private bool screenOn;
+    private bool deathScreenOn;
+    [SerializeField] private GameObject winScreen;
+    private bool winScreenOn;
     [SerializeField] private Sprite deathSprite;
     [SerializeField] private Sprite aliveSprite;
-
+    [SerializeField] private TextMeshProUGUI highscoreText;
     private void Awake() {
 
         tiletrap_spawns = new Transform[tiletraps.Length];
@@ -47,7 +49,7 @@ public class GameManager : MonoBehaviour
         deathCount = 0;
         deathCountText.text = deathCount.ToString();
         globalTimer = 0;
-
+        Time.timeScale = 1;
         tiletraps = FindObjectsOfType<Trap>();
     }
 
@@ -61,14 +63,29 @@ public class GameManager : MonoBehaviour
     public void WinLevel(float score) {
         if (highScores.instance.GrabScore(levelIndex + 1) == 0) {
             highScores.instance.UpdateOneScore(levelIndex, score);
+            highscoreText.gameObject.SetActive(true);
+            TimeSpan time = TimeSpan.FromSeconds(highScores.instance.GrabScore(levelIndex + 1));
+            highscoreText.text = "New highscore: " + time.ToString(@"hh\:mm\:ss\:ff");
             return;
         }
 
         if(highScores.instance.GrabScore(levelIndex + 1) > score) {
             highScores.instance.UpdateOneScore(levelIndex, score);
+            highscoreText.gameObject.SetActive(true);
+            TimeSpan time = TimeSpan.FromSeconds(highScores.instance.GrabScore(levelIndex + 1));
+            highscoreText.text = "New highscore: " + time.ToString(@"hh\:mm\:ss\:ff");
         }
+
+        Time.timeScale = 0;
+
+        ManageWinScreen();
     }
     
+    public void RestartLevel() {
+        RespawnPlayer();
+        globalTimer = 0;
+        Time.timeScale = 1;
+    }
     public void KillPlayer() {
         deathCount++;
         deathCountText.text = deathCount.ToString();
@@ -84,12 +101,22 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
     public void ManageDeathScreen() {
-        if (!screenOn) {
-            screenOn = true;
+        if (!deathScreenOn) {
+            deathScreenOn = true;
             deathScreen.SetActive(true);
         } else {
-            screenOn = false;
+            deathScreenOn = false;
             deathScreen.SetActive(false);
+        }
+    }
+    public void ManageWinScreen() {
+        if (!winScreenOn) {
+            winScreenOn = true;
+            winScreen.SetActive(true);
+        }
+        else {
+            winScreenOn = false;
+            winScreen.SetActive(false);
         }
     }
     public void RespawnPlayer() {
