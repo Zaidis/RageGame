@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -17,6 +18,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] Trap[] tiletraps;
     Transform[] tiletrap_spawns;
+
+    [SerializeField] private GameObject deathScreen;
+    private bool screenOn;
 
     private void Awake() {
 
@@ -41,6 +45,8 @@ public class GameManager : MonoBehaviour
         deathCount = 0;
         deathCountText.text = deathCount.ToString();
         globalTimer = 0;
+
+        tiletraps = FindObjectsOfType<Trap>();
     }
 
     private void Update() {
@@ -65,16 +71,31 @@ public class GameManager : MonoBehaviour
         deathCount++;
         deathCountText.text = deathCount.ToString();
         print("Player has died");
-        RespawnPlayer();
+        //RespawnPlayer();
+        ManageDeathScreen();
     }
 
+    public void GiveUp() {
+        SceneManager.LoadScene(0);
+    }
+    public void ManageDeathScreen() {
+        if (!screenOn) {
+            screenOn = true;
+            deathScreen.SetActive(true);
+        } else {
+            screenOn = false;
+            deathScreen.SetActive(false);
+        }
+    }
     public void RespawnPlayer() {
         player.transform.position = spawnPoint.position;
+        ManageDeathScreen();
         ResetTraps();
     }
 
     void ResetTraps()
     {
+        
         // for each trap, reset position and rotation, also turn off the in range bool
         for (int i = 0; i < tiletraps.Length; i++)
         {
