@@ -40317,7 +40317,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2015676706}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.51, y: -0.5, z: 0}
+  m_LocalPosition: {x: -13.31, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -40335,7 +40335,7 @@ GameObject:
   - component: {fileID: 2034713658}
   m_Layer: 7
   m_Name: Moving platform
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40354,7 +40354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wayPointOne: {fileID: 2015676707}
   wayPointTwo: {fileID: 1402111928}
-  speed: 0.1
+  speed: 0.06
   changeLocation: 0
   changeSpeed: 0
 --- !u!4 &2034713659
@@ -40365,7 +40365,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2034713657}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.51, y: -0.5, z: 0}
+  m_LocalPosition: {x: -13.31, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 282326657}
@@ -42034,11 +42034,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 694394499219920779, guid: cee6ae874c355984d999aa28cce6e842, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 47.83
+      value: 2.16
       objectReference: {fileID: 0}
     - target: {fileID: 694394499219920779, guid: cee6ae874c355984d999aa28cce6e842, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.8484
+      value: 2.93
       objectReference: {fileID: 0}
     - target: {fileID: 694394499219920779, guid: cee6ae874c355984d999aa28cce6e842, type: 3}
       propertyPath: m_LocalPosition.z

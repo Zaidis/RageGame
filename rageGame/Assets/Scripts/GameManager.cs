@@ -82,9 +82,17 @@ public class GameManager : MonoBehaviour
     }
     
     public void RestartLevel() {
-        RespawnPlayer();
+        //RespawnPlayer();
+        NewTry();
+        ManageWinScreen();
         globalTimer = 0;
         Time.timeScale = 1;
+    }
+
+    public void NewTry() {
+
+        SceneManager.LoadScene(levelIndex + 1);
+
     }
     public void KillPlayer() {
         deathCount++;

@@ -51,7 +51,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 0}
   tiletraps: []
   deathScreen: {fileID: 3588390468110502503}
-  winScreen: {fileID: 0}
+  winScreen: {fileID: 8539130390394034366}
   deathSprite: {fileID: 21300000, guid: 62f3f8e2077aa624f86fd9d7693d8b7d, type: 3}
   aliveSprite: {fileID: 21300000, guid: fbf9fb4d541d9294caa5b99f1389d926, type: 3}
   highscoreText: {fileID: 5169220149157469824}
