@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public playerMovement player;
     public int deathCount { get; set; }
     public float globalTimer;
-
+    public int levelIndex;
     public Transform spawnPoint;
 
     [SerializeField] Trap[] tiletraps;
@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         } else {
             Destroy(this.gameObject);
         }
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
 
         player = FindObjectOfType<playerMovement>();
     }
@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     private void Start() {
         deathCount = 0;
         deathCountText.text = deathCount.ToString();
+        globalTimer = 0;
     }
 
     private void Update() {
@@ -49,6 +50,16 @@ public class GameManager : MonoBehaviour
         globalTimerText.text = time.ToString(@"hh\:mm\:ss\:ff");
     }
 
+    public void WinLevel(float score) {
+        if (highScores.instance.GrabScore(levelIndex + 1) == 0) {
+            highScores.instance.UpdateOneScore(levelIndex, score);
+            return;
+        }
+
+        if(highScores.instance.GrabScore(levelIndex + 1) > score) {
+            highScores.instance.UpdateOneScore(levelIndex, score);
+        }
+    }
     
     public void KillPlayer() {
         deathCount++;

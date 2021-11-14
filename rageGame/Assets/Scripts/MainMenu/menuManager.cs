@@ -7,6 +7,7 @@ public class menuManager : MonoBehaviour
 {
     
     public void QuitGame() {
+        print("Quitting");
         Application.Quit();
     }
 
