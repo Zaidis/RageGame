@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
             highscoreText.text = "New highscore: " + time.ToString(@"hh\:mm\:ss\:ff");
         }
 
-        Time.timeScale = 0;
+        
 
         ManageWinScreen();
     }
@@ -111,19 +111,23 @@ public class GameManager : MonoBehaviour
     public void ManageDeathScreen() {
         if (!deathScreenOn) {
             deathScreenOn = true;
+            Time.timeScale = 0;
             deathScreen.SetActive(true);
         } else {
             deathScreenOn = false;
+            Time.timeScale = 1;
             deathScreen.SetActive(false);
         }
     }
     public void ManageWinScreen() {
         if (!winScreenOn) {
             winScreenOn = true;
+            Time.timeScale = 0;
             winScreen.SetActive(true);
         }
         else {
             winScreenOn = false;
+            Time.timeScale = 1;
             winScreen.SetActive(false);
         }
     }
