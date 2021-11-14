@@ -32,9 +32,5 @@ public class bodyMovement : MonoBehaviour
     public void KillBody() {
         Destroy(this.gameObject);
     }
-    private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.collider.gameObject.CompareTag("Trapbox")) {
-            Respawn();
-        }
-    }
+    
 }
