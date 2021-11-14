@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject deathScreen;
     private bool screenOn;
+    [SerializeField] private Sprite deathSprite;
+    [SerializeField] private Sprite aliveSprite;
 
     private void Awake() {
 
@@ -71,6 +73,9 @@ public class GameManager : MonoBehaviour
         deathCount++;
         deathCountText.text = deathCount.ToString();
         print("Player has died");
+        player.GetComponent<Animator>().enabled = false;
+        player.GetComponent<SpriteRenderer>().sprite = deathSprite;
+        player.canMove = false;
         //RespawnPlayer();
         ManageDeathScreen();
     }
@@ -88,7 +93,11 @@ public class GameManager : MonoBehaviour
         }
     }
     public void RespawnPlayer() {
+        player.GetComponent<SpriteRenderer>().sprite = aliveSprite;
+        player.GetComponent<Animator>().enabled = true;
+        player.canMove = true;
         player.transform.position = spawnPoint.position;
+
         ManageDeathScreen();
         ResetTraps();
     }
